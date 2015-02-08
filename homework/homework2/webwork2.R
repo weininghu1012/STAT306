@@ -120,4 +120,14 @@ confint(fit2)
 prediction = b0 + 17*bffarea + 10*bage + 29*bmfee
 prediction
 b0
-diag = lm.diag(fit2)
+
+#SE for prediction
+xnew = richmondtownh[1,] # new data frame with one tow
+ffarea = 17
+age = 10
+mfee = 29
+xnew = data.frame(cbind(ffarea,age,mfee))
+print(xnew)
+pred = predict(fit2, new = xnew, interval = "prediction", se.fit = T)
+print(names(pred))
+print (pred)
