@@ -1,7 +1,7 @@
 # STAT306 Lab 5 Dummy variable and variable transformations
 # example to illustrate categorical explanatory variable with more than 2
 #   categories, also to show transforms
-mov=read.table("moviegross.dat.txt",header=T,skip=2)
+mov=read.table("lab/moviegross.dat.txt",header=T,skip=2)
 names(mov)
 # year movie studio openweekendgross gross  ST
 
@@ -41,7 +41,9 @@ plot(lnopen,lngross,type="n")
 text(lnopen,lngross,label=ST)  
 fit2=lm(lngross~lnopen+ST)
 print(summary(fit2))
-
+summ<-summary(fit2)
+print(summ$sigma)
+print(summ$cov.unscaled)
 #             Estimate Std. Error t value Pr(>|t|)    
 #(Intercept)  1.933926   0.279079   6.930 1.45e-08 ***
 #lnopen       0.874742   0.069323  12.618 3.23e-16 ***
