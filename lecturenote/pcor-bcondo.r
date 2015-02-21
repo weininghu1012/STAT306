@@ -12,7 +12,7 @@ pcor=function(s)
   condcov[1,2]/sqrt(condcov[1,1] * condcov[2,2])
 }
 
-b=read.table("burnabycondo.txt",header=T,skip=2)
+b=read.table("/Users/apple/Desktop/STAT306/lecturenote/burnabycondo.txt",header=T,skip=2)
 b=b[,2:9]
 b$askprice=b$askprice/10000
 b$ffarea=b$ffarea/100
