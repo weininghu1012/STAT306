@@ -1,5 +1,5 @@
 # Multiple regression: Burnaby condo data with categorical explanatory variable
-b=read.table("burnabycondo.txt",header=T,skip=2) # data frame
+b=read.table("/Users/apple/Desktop/STAT306/lecturenote/burnabycondo.txt",header=T,skip=2) # data frame
 print(names(b))
 # [1] "MLS"      "askprice" "ffarea"   "beds"     "baths"    "floor"   
 # [7] "view"     "age"      "mfee"     "region"  
@@ -22,11 +22,24 @@ n=nrow(b)
 # categorical variable with 3 regions, 
 # baseline group by default is first in alphabetical order
 subreg=rep("other",n)
+subreg
 ireg1=(b$region=="metrotown"); ireg2=(b$region=="brentwood-park")
+
 subreg[ireg1]="metrotown"
 subreg[ireg2]="brentwood"
 b$subreg=subreg
-# to make metrotown the baseline,
+
+#the output for factor(subreg) is
+# [1] metrotown brentwood other     metrotown metrotown metrotown metrotown metrotown other    
+# [10] metrotown other     metrotown metrotown other     other     other     other     metrotown
+# [19] other     other     other     other     other     other     brentwood brentwood other    
+# [28] other     metrotown other     metrotown other     other     other     other     other    
+# [37] other     metrotown other     metrotown metrotown other     other     other     metrotown
+# [46] metrotown other     other     metrotown other     other     metrotown other     brentwood
+# [55] metrotown other     metrotown metrotown brentwood other     brentwood brentwood other    
+# [64] brentwood other     other     brentwood metrotown other    
+# Levels: brentwood metrotown other
+# to make metrotown the baseline,choose base = 2
 subregm=C(factor(subreg),contr.treatment(3,base=2))
 b$subregm=subregm
 
