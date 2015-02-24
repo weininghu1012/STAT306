@@ -100,3 +100,4 @@ which(ST=="f")
 
 #Compare the STf STs STw columns of model.matrix(fit) to ST in the mov data, 
 #what do you find?
+
