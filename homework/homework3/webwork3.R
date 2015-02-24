@@ -159,3 +159,11 @@ data = data.frame(cbind(x1,x2,x3,y))
 rmat = cor(data)
 print (rmat)
 rmat[1,1]
+
+#caculate the part for Ryx1:x2
+rsub1 = rmat[c(4,1,2),c(4,1,2)]
+pcor(rsub1)
+
+#caculate the part for Ryx2;x1x3
+rsub2 = rmat[c(4,2,1,3),c(4,2,1,3)]
+pcor(rsub2)
