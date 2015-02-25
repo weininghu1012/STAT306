@@ -24,7 +24,7 @@ n=nrow(b)
 subreg=rep("other",n)
 subreg
 ireg1=(b$region=="metrotown"); ireg2=(b$region=="brentwood-park")
-
+ireg1
 subreg[ireg1]="metrotown"
 subreg[ireg2]="brentwood"
 b$subreg=subreg
@@ -86,7 +86,7 @@ print(summary(bur5m))
 #sqfl           2.322      0.378    6.14  6.5e-08 ***
 #age           -0.532      0.056   -9.51  1.0e-13 ***
 #beds           4.821      1.900    2.54   0.0137 *  
-#subregm1      -2.809      1.945   -1.44   0.1536    
+#subregm1      -2.809      1.945   -1.44   0.1536    # this one is for the metrotown part 
 #subregm3      -2.840      1.415   -2.01   0.0491 *  
 #Residual standard error: 4.75 on 62 degrees of freedom
 #Multiple R-squared:  0.828,     Adjusted R-squared:  0.812 

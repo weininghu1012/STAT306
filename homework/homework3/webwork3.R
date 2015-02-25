@@ -27,53 +27,12 @@ mfr=c('P', 'P', 'R', 'G', 'G', 'P', 'G', 'R', 'P', 'G', 'P', 'N',
 # create a data frame
 cereal = data.frame(cbind(calories,protein,fat,fiber,carbo,sugars))
 cereal$mfr = mfr
-levels(cereal$mfr)
+cereal
+#give a summary of the categories
 print(table(cereal$mfr))
 #categorical variable with 4 manufactures
 n = nrow(cereal)
 n
-#fill in all the categories as "other"
-submfr = rep("other",n)
-#The estimate of the signed distance of the hyperplane for manufacturer
-#G relative to P is and its SE is
-#fill in "P" and "G" as contrast
-imfr1 = (cereal$mfr == "P")
-imfr2 = (cereal$mfr == "G")
-submfr[imfr1] = "P"
-submfr[imfr2] = "G"
-cereal$submfr = submfr
-factor(submfr)
-# [1] P     P     other G     G     P     G     other P     G     P     other P     other other G    
-# [17] G     P     G     other G     other G     G     other G     other G     G     G     P     G    
-# [33] other G     other G     G     G     G     G     P     other
-# Levels: G other P
-# to make P the baseline
-submfrp = C(factor(submfr),contr.treatment(3,base = 3))
-cereal$submfrp = submfrp
-attach(cereal)
-calgp = lm(calories~protein+fat+fiber+carbo+sugars+submfrp)
-print(summary(calgp))
-
-# Residuals:
-#   Min      1Q  Median      3Q     Max 
-# -11.930  -2.794   0.105   1.947  12.974 
-# 
-# Coefficients:
-#   Estimate Std. Error t value Pr(>|t|)    
-# (Intercept)    7.775      8.307    0.94    0.356    
-# protein        2.939      1.169    2.52    0.017 *  
-#   fat            9.856      1.113    8.86  2.4e-10 ***
-#   fiber          0.560      0.703    0.80    0.431    
-# carbo          4.020      0.391   10.29  5.6e-12 ***
-#   sugars         3.470      0.291   11.94  1.0e-13 ***
-#   submfrp1      -4.025      2.231   -1.80    0.080 .  
-# submfrp2      -4.941      2.499   -1.98    0.056 .  
-# ---
-#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-# 
-# Residual standard error: 5.07 on 34 degrees of freedom
-# Multiple R-squared:  0.914,  Adjusted R-squared:  0.896 
-# F-statistic: 51.3 on 7 and 34 DF,  p-value: 3.12e-16
 
 #fill in "N" and "R" as contrast
 submfr = rep("other",n)
@@ -87,57 +46,55 @@ factor(submfr)
 # [17] other other other N     other N     other other N     other N     other other other other other
 # [33] R     other R     other other other other other other R    
 # Levels: N other R
-submfrr = C(factor(submfr),contr.treatment(3,base = 3))
+submfrr = C(factor(submfr),contr.treatment(3,base = 1))
 calnr = lm(calories~protein+fat+fiber+carbo+sugars+submfrr)
 print(summary(calnr))
+residr = sqrt(sum(calnr$resid^2)/calnr$df.resid)
+residr
+#fill in all the categories as "other"
+submfr = rep("other",n)
+submfr
+#The estimate of the signed distance of the hyperplane for manufacturer
+#G relative to P is and its SE is
+#fill in "P" and "G" as contrast
+imfr1 = (cereal$mfr == "P")
+imfr2 = (cereal$mfr == "G")
+imfr1
+# > imfr1
+# [1]  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE
+# [20] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+# [39] FALSE FALSE  TRUE FALSE
+#fill in "P" if it's true
+submfr[imfr1] = "P"
+submfr[imfr2] = "G"
+submfr
+cereal$submfr = submfr
+factor(submfr)
+# [1] P     P     other G     G     P     G     other P     G     P     other P     other other G    
+# [17] G     P     G     other G     other G     G     other G     other G     G     G     P     G    
+# [33] other G     other G     G     G     G     G     P     other
+# Levels: G other P
+# to make P the baseline
+submfrp = C(factor(submfr),contr.treatment(3,base = 1))
+cereal$submfrp = submfrp
+attach(cereal)  # attach data frame so that variables can be access without $
+calg = lm(calories~protein+fat+fiber+carbo+sugars+submfr)
+print(summary(calg))
 
-# Residuals:
-#   Min      1Q  Median      3Q     Max 
-# -12.229  -3.187  -0.662   2.294  15.087 
-# 
-# Coefficients:
-#   Estimate Std. Error t value Pr(>|t|)    
-# (Intercept)   0.8098    10.5476    0.08    0.939    
-# protein       2.8715     1.2262    2.34    0.025 *  
-# fat           9.3853     1.1879    7.90  3.4e-09 ***
-# fiber         0.9144     0.7101    1.29    0.207    
-# carbo         4.0856     0.4418    9.25  8.3e-11 ***
-# sugars        3.5583     0.3312   10.74  1.8e-12 ***
-# submfrr1     -0.0453     3.9801   -0.01    0.991    
-# submfrr2      2.6159     2.6175    1.00    0.325    
-# ---
-#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-# 
-# Residual standard error: 5.31 on 34 degrees of freedom
-# Multiple R-squared:  0.905,  Adjusted R-squared:  0.886 
-# F-statistic: 46.4 on 7 and 34 DF,  p-value: 1.44e-15
+calgp = lm(calories~protein+fat+fiber+carbo+sugars+submfrp)
+print(summary(calgp))
+residp = sqrt(sum(calgp$resid^2)/fit$df.resid)
+residp
+
+
+
 
 detach(cereal)
 cereal
 reg6 = lm(calories~+protein+fat+fiber+carbo+sugars+mfr)
 print(summary(reg6))
 
-# Residuals:
-#   Min      1Q  Median      3Q     Max 
-# -11.330  -2.673   0.069   1.829  13.130 
-# 
-# Coefficients:
-#   Estimate Std. Error t value Pr(>|t|)    
-# (Intercept)   2.3970     8.9976    0.27    0.792    
-# protein       2.9729     1.1883    2.50    0.017 *  
-# fat           9.9915     1.1976    8.34  1.2e-09 ***
-# fiber         0.5233     0.7204    0.73    0.473    
-# carbo         4.0748     0.4277    9.53  5.4e-11 ***
-# sugars        3.5132     0.3216   10.92  1.7e-12 ***
-# mfrN          0.0224     3.6652    0.01    0.995    
-# mfrP          4.1737     2.3033    1.81    0.079 .  
-# mfrR         -1.2986     2.6360   -0.49    0.626    
-# ---
-#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-# 
-# Residual standard error: 5.14 on 33 degrees of freedom
-# Multiple R-squared:  0.914,  Adjusted R-squared:  0.893 
-# F-statistic: 43.7 on 8 and 33 DF,  p-value: 2.21e-15
+
 
 #question2
 # Assume s is a sample covariance or sample correlation matrix
