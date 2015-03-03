@@ -1,0 +1,107 @@
+delta= 0.1 
+
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.37436 -0.13602 -0.04785  0.15584  0.37632 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   0.9606     0.1137   8.449 1.72e-07 ***
+x1            4.8303     3.2964   1.465    0.161    
+x2           -0.9431     1.0984  -0.859    0.402    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2442 on 17 degrees of freedom
+Multiple R-squared:  0.9996,	Adjusted R-squared:  0.9996 
+F-statistic: 2.23e+04 on 2 and 17 DF,  p-value: < 2.2e-16
+
+            (Intercept)          x1          x2
+(Intercept)   0.2167457  -0.4331832   0.1390808
+x1           -0.4331832 182.1923546 -60.7082484
+x2            0.1390808 -60.7082484  20.2287404
+
+============================================================
+delta= 0.05 
+
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.37082 -0.24409  0.00851  0.20316  0.45593 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   1.2047     0.1519   7.928 4.12e-07 ***
+x1            3.2891     7.0241   0.468    0.646    
+x2           -0.4346     2.3395  -0.186    0.855    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2792 on 17 degrees of freedom
+Multiple R-squared:  0.9995,	Adjusted R-squared:  0.9994 
+F-statistic: 1.68e+04 on 2 and 17 DF,  p-value: < 2.2e-16
+
+            (Intercept)          x1          x2
+(Intercept)   0.2961631   -7.148106    2.375591
+x1           -7.1481065  632.919668 -210.808765
+x2            2.3755914 -210.808765   70.214979
+
+============================================================
+delta= 0.01 
+
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.48305 -0.18323  0.05349  0.20537  0.52654 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   1.1046     0.1537   7.188 1.52e-06 ***
+x1           82.6594    38.0883   2.170   0.0444 *  
+x2          -26.8891    12.6980  -2.118   0.0493 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.3022 on 17 degrees of freedom
+Multiple R-squared:  0.9994,	Adjusted R-squared:  0.9994 
+F-statistic: 1.462e+04 on 2 and 17 DF,  p-value: < 2.2e-16
+
+            (Intercept)          x1           x2
+(Intercept)    0.258616    26.06677    -8.695466
+x1            26.066766 15885.00578 -5295.781713
+x2            -8.695466 -5295.78171  1765.520705
+
+============================================================
+delta= 0 
+
+Call:
+lm(formula = y ~ x1 + x2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.35649 -0.21105 -0.01236  0.18822  0.47454 
+
+Coefficients: (1 not defined because of singularities)
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  1.09656    0.12041   9.107 3.69e-08 ***
+x1           1.98806    0.01005 197.785  < 2e-16 ***
+x2                NA         NA      NA       NA    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2592 on 18 degrees of freedom
+Multiple R-squared:  0.9995,	Adjusted R-squared:  0.9995 
+F-statistic: 3.912e+04 on 1 and 18 DF,  p-value: < 2.2e-16
+
+            (Intercept)           x1
+(Intercept)  0.21578947 -0.015789474
+x1          -0.01578947  0.001503759
+
+============================================================
