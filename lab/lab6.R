@@ -22,18 +22,21 @@ library(leaps)
 
 
 #Read in the data set
-dat <- read.table("richmondcondo.txt", header=T, skip=2)
+dat <- read.table("/Users/apple/Desktop/STAT306/lab/richmondcondo.txt", header=T, skip=2)
 #Or dat <- read.table("Downloads/richmondcondo.txt", header=T, skip=2)
 
 #Load the backwards elimination function written by Prof. Welch
-source("ls.back.elim.R.txt")
+source("/Users/apple/Desktop/STAT306/lab/ls.back.elim.R")
 #source will put everything in the file into your R console 
 
 #Have a look at the data
 head(dat)
-dat <- dat[,-c(1, 10)]
+dat
+dat <- dat[,-c(1, 10)] # to delete some part
 #The first column (id of the house) should be discarded
 #For illustration of the method, we will not work with the dummy variable "region"
+par("mar")
+par(mar=c(0.0001,0.0001,0.0001,0.0001)) # question, why the margin is too large
 pairs(dat)
 
 #Fit the model with all variables
@@ -42,7 +45,7 @@ summary(fullModel)
 
 #Get the design matrix of the full linear model 
 Xmat=model.matrix(fullModel)
-
+Xmat
 # ls.back.elim will delete the least significant variable 
 # from the design matrix until all the variables are significant.
 # We do not consider deleting the intercept for ls.back.elim()
@@ -79,7 +82,10 @@ ss1
 #1  ( 1 ) " "    " "  " "   " "   " "  " " "*" Best model with one variable is askprice~mfee 
 #2  ( 1 ) " "    " "  " "   " "   " "  "*" "*" Best model with two variables is askprice~mfee+age
 #3  ( 1 ) "*"    " "  " "   " "   " "  "*" "*"
-#.....
+#4  ( 1 ) "*"    " "  " "   " "   "*"  "*" "*" 
+#5  ( 1 ) "*"    "*"  " "   " "   "*"  "*" "*" 
+#6  ( 1 ) "*"    "*"  " "   "*"   "*"  "*" "*" 
+#7  ( 1 ) "*"    "*"  "*"   "*"   "*"  "*" "*" 
 
 #This table can be accessed directly via 
 ss1$which
@@ -100,10 +106,29 @@ which.min(ss1$cp)
 #Backward stepwise
 s2<- regsubsets(askprice~., data=dat, method="backward")
 ss2 <- summary(s2)
-
+ss2
+# Selection Algorithm: backward
+# ffarea beds baths floor view age mfee
+# 1  ( 1 ) " "    " "  " "   " "   " "  " " "*" 
+# 2  ( 1 ) " "    " "  " "   " "   " "  "*" "*" 
+# 3  ( 1 ) "*"    " "  " "   " "   " "  "*" "*" 
+# 4  ( 1 ) "*"    " "  " "   " "   "*"  "*" "*" 
+# 5  ( 1 ) "*"    "*"  " "   " "   "*"  "*" "*" 
+# 6  ( 1 ) "*"    "*"  " "   "*"   "*"  "*" "*" 
+# 7  ( 1 ) "*"    "*"  "*"   "*"   "*"  "*" "*" 
 #Forward stepwise
 s3<- regsubsets(askprice~., data=dat, method="forward")
 ss3 <- summary(s3)
+ss3
 
+# Selection Algorithm: forward
+# ffarea beds baths floor view age mfee
+# 1  ( 1 ) " "    " "  " "   " "   " "  " " "*" 
+# 2  ( 1 ) " "    " "  " "   " "   " "  "*" "*" 
+# 3  ( 1 ) "*"    " "  " "   " "   " "  "*" "*" 
+# 4  ( 1 ) "*"    " "  " "   " "   "*"  "*" "*" 
+# 5  ( 1 ) "*"    "*"  " "   " "   "*"  "*" "*" 
+# 6  ( 1 ) "*"    "*"  " "   "*"   "*"  "*" "*" 
+# 7  ( 1 ) "*"    "*"  "*"   "*"   "*"  "*" "*" 
 #Are the results from these different methods the same?
 
