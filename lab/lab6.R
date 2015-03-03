@@ -132,3 +132,44 @@ ss3
 # 7  ( 1 ) "*"    "*"  "*"   "*"   "*"  "*" "*" 
 #Are the results from these different methods the same?
 
+# for the quiz part
+install.packages("MASS")
+library(MASS)
+dat = cpus[,-c(1,9)] #do not want the "estperf" and "name" variables
+dat
+# Take "perf" as the response variable and all the other variables in the "dat" are the covariates
+# find the best model according to Mallow's CP criterion
+
+pairs(dat)
+# get an initial full model
+fullmodel = lm(perf~.,data = dat)
+summary(fullmodel)
+#perform an exhaustive search for the best model
+p1= regsubsets(perf~., data=dat, method="exhaustive")
+pp1 = summary(p1)
+pp1
+pp1$cp
+which.min(pp1$cp)
+#best model is with 5 variables according to cp
+cpfit = lm(perf~syct+mmin+mmax+cach+chmax, data = dat)
+summary(cpfit)
+# lm(formula = perf ~ syct + mmin + mmax + cach + chmax, data = dat)
+# 
+# Residuals:
+#   Min      1Q  Median      3Q     Max 
+# -193.39  -24.94    5.77   26.65  389.66 
+# 
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# (Intercept) -5.608e+01  8.007e+00  -7.004 3.58e-11 ***
+#   syct         4.912e-02  1.746e-02   2.813  0.00539 ** 
+#   mmin         1.518e-02  1.788e-03   8.490 4.34e-15 ***
+#   mmax         5.561e-03  6.397e-04   8.694 1.18e-15 ***
+#   cach         6.296e-01  1.344e-01   4.686 5.11e-06 ***
+#   chmax        1.460e+00  2.076e-01   7.032 3.05e-11 ***
+#   ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# Residual standard error: 59.86 on 203 degrees of freedom
+# Multiple R-squared:  0.8648,  Adjusted R-squared:  0.8615 
+# F-statistic: 259.7 on 5 and 203 DF,  p-value: < 2.2e-16
