@@ -1,0 +1,143 @@
+
+Call:
+lm(formula = askprice ~ ffarea + sqfl + age)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.5499 -3.2303 -0.5928  2.4127 15.2363 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  7.09871    3.00970   2.359   0.0214 *  
+ffarea       3.73703    0.35545  10.514 1.17e-15 ***
+sqfl         2.51582    0.38270   6.574 9.75e-09 ***
+age         -0.57999    0.05487 -10.570 9.38e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 5.04 on 65 degrees of freedom
+Multiple R-squared:  0.7979,	Adjusted R-squared:  0.7886 
+F-statistic: 85.53 on 3 and 65 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = askprice ~ ffarea + sqfl + age + beds)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-11.0932  -3.5054  -0.8666   2.9138  14.0382 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  8.70444    2.96562   2.935  0.00463 ** 
+ffarea       2.52992    0.59183   4.275 6.50e-05 ***
+sqfl         2.55472    0.36846   6.933 2.43e-09 ***
+age         -0.53558    0.05569  -9.617 4.81e-14 ***
+beds         4.75871    1.90433   2.499  0.01504 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.848 on 64 degrees of freedom
+Multiple R-squared:  0.8159,	Adjusted R-squared:  0.8043 
+F-statistic: 70.89 on 4 and 64 DF,  p-value: < 2.2e-16
+
+
+Leave-one-out Cross-validation
+i= 1  y=  32.8   ypred3= 36.61863   ypred4= 36.97595 cvres4  -4.17595 
+i= 2  y=  43.38   ypred3= 46.9421   ypred4= 49.20068 cvres4  -5.820675 
+i= 3  y=  33.99   ypred3= 34.66189   ypred4= 33.54641 cvres4  0.4435884 
+i= 4  y=  30.99   ypred3= 32.7671   ypred4= 33.33617 cvres4  -2.346173 
+i= 5  y=  67   ypred3= 55.66666   ypred4= 55.58058 cvres4  11.41942 
+i= 6  y=  44.9   ypred3= 46.9584   ypred4= 46.93431 cvres4  -2.034315 
+i= 7  y=  38.4   ypred3= 45.0919   ypred4= 45.97996 cvres4  -7.579958 
+i= 8  y=  69.58   ypred3= 58.05892   ypred4= 58.59964 cvres4  10.98036 
+i= 9  y=  41.59   ypred3= 39.81736   ypred4= 41.92316 cvres4  -0.3331639 
+i= 10  y=  38.9   ypred3= 36.36384   ypred4= 35.5948 cvres4  3.305202 
+i= 11  y=  52   ypred3= 46.85773   ypred4= 47.16215 cvres4  4.837855 
+i= 12  y=  65.8   ypred3= 49.80951   ypred4= 50.91417 cvres4  14.88583 
+i= 13  y=  58.8   ypred3= 48.22863   ypred4= 49.68813 cvres4  9.111865 
+i= 14  y=  43.9   ypred3= 43.0976   ypred4= 44.37295 cvres4  -0.4729533 
+i= 15  y=  48.5   ypred3= 55.34181   ypred4= 52.93898 cvres4  -4.438982 
+i= 16  y=  57.9   ypred3= 46.11869   ypred4= 48.53096 cvres4  9.369038 
+i= 17  y=  37.98   ypred3= 38.09497   ypred4= 38.93255 cvres4  -0.9525503 
+i= 18  y=  32.9   ypred3= 40.03745   ypred4= 38.03782 cvres4  -5.137819 
+i= 19  y=  28.98   ypred3= 31.88345   ypred4= 29.4089 cvres4  -0.4288982 
+i= 20  y=  36.3   ypred3= 38.9805   ypred4= 40.95344 cvres4  -4.65344 
+i= 21  y=  56.5   ypred3= 56.3299   ypred4= 52.91603 cvres4  3.583971 
+i= 22  y=  39.8   ypred3= 37.69213   ypred4= 38.0526 cvres4  1.747398 
+i= 23  y=  43.8   ypred3= 53.08805   ypred4= 56.45681 cvres4  -12.65681 
+i= 24  y=  46.8   ypred3= 51.93231   ypred4= 51.41592 cvres4  -4.615923 
+i= 25  y=  39.8   ypred3= 39.24042   ypred4= 41.52558 cvres4  -1.72558 
+i= 26  y=  50.99   ypred3= 50.36528   ypred4= 50.95306 cvres4  0.03693755 
+i= 27  y=  32.99   ypred3= 37.81198   ypred4= 38.30265 cvres4  -5.312648 
+i= 28  y=  29.99   ypred3= 29.961   ypred4= 28.95828 cvres4  1.031725 
+i= 29  y=  32.5   ypred3= 32.84026   ypred4= 33.53884 cvres4  -1.038841 
+i= 30  y=  33.5   ypred3= 32.29942   ypred4= 33.00272 cvres4  0.4972777 
+i= 31  y=  42.9   ypred3= 46.40447   ypred4= 43.88062 cvres4  -0.9806175 
+i= 32  y=  42.08   ypred3= 50.61963   ypred4= 48.79814 cvres4  -6.718142 
+i= 33  y=  31.49   ypred3= 27.68139   ypred4= 25.43487 cvres4  6.055131 
+i= 34  y=  42.88   ypred3= 42.26102   ypred4= 41.71152 cvres4  1.168484 
+i= 35  y=  26.99   ypred3= 33.2217   ypred4= 31.16325 cvres4  -4.173254 
+i= 36  y=  21.48   ypred3= 18.57537   ypred4= 18.18597 cvres4  3.294027 
+i= 37  y=  36.9   ypred3= 37.50278   ypred4= 39.3851 cvres4  -2.485099 
+i= 38  y=  29.9   ypred3= 34.69014   ypred4= 33.46518 cvres4  -3.565182 
+i= 39  y=  27.8   ypred3= 19.37428   ypred4= 18.68711 cvres4  9.112894 
+i= 40  y=  35.29   ypred3= 33.97814   ypred4= 35.576 cvres4  -0.2859981 
+i= 41  y=  36.49   ypred3= 37.61072   ypred4= 38.11957 cvres4  -1.629568 
+i= 42  y=  21.98   ypred3= 26.53828   ypred4= 25.51648 cvres4  -3.536477 
+i= 43  y=  20.5   ypred3= 23.40846   ypred4= 22.34241 cvres4  -1.842412 
+i= 44  y=  29.8   ypred3= 26.06948   ypred4= 27.17226 cvres4  2.627737 
+i= 45  y=  31.5   ypred3= 22.47795   ypred4= 24.55527 cvres4  6.944729 
+i= 46  y=  23.8   ypred3= 17.02584   ypred4= 17.20348 cvres4  6.596521 
+i= 47  y=  24.3   ypred3= 21.2624   ypred4= 23.69532 cvres4  0.6046778 
+i= 48  y=  24.5   ypred3= 27.99245   ypred4= 30.00835 cvres4  -5.508354 
+i= 49  y=  28.8   ypred3= 30.21357   ypred4= 29.37037 cvres4  -0.5703667 
+i= 50  y=  33.3   ypred3= 29.76161   ypred4= 28.94908 cvres4  4.350925 
+i= 51  y=  30.9   ypred3= 38.93012   ypred4= 36.22247 cvres4  -5.322466 
+i= 52  y=  27.15   ypred3= 30.77609   ypred4= 30.01344 cvres4  -2.86344 
+i= 53  y=  48   ypred3= 51.32588   ypred4= 49.31573 cvres4  -1.315734 
+i= 54  y=  38.8   ypred3= 39.44373   ypred4= 41.20849 cvres4  -2.408494 
+i= 55  y=  36.9   ypred3= 38.81278   ypred4= 40.59834 cvres4  -3.698342 
+i= 56  y=  39.9   ypred3= 42.90169   ypred4= 44.41415 cvres4  -4.514148 
+i= 57  y=  27.9   ypred3= 30.05625   ypred4= 28.98645 cvres4  -1.086453 
+i= 58  y=  34.2   ypred3= 33.14229   ypred4= 30.87136 cvres4  3.32864 
+i= 59  y=  32   ypred3= 32.6219   ypred4= 30.61842 cvres4  1.381583 
+i= 60  y=  36.8   ypred3= 34.71164   ypred4= 33.7819 cvres4  3.018099 
+i= 61  y=  48.5   ypred3= 44.70448   ypred4= 44.46341 cvres4  4.036586 
+i= 62  y=  43.89   ypred3= 46.03576   ypred4= 47.54735 cvres4  -3.657349 
+i= 63  y=  38.98   ypred3= 46.34086   ypred4= 45.38152 cvres4  -6.401525 
+i= 64  y=  34.2   ypred3= 36.60828   ypred4= 35.74204 cvres4  -1.542041 
+i= 65  y=  35.99   ypred3= 40.5898   ypred4= 42.14679 cvres4  -6.156795 
+i= 66  y=  45.98   ypred3= 49.82702   ypred4= 48.43655 cvres4  -2.456546 
+i= 67  y=  43.9   ypred3= 42.87302   ypred4= 43.86372 cvres4  0.0362826 
+i= 68  y=  62.9   ypred3= 54.63915   ypred4= 53.45485 cvres4  9.445151 
+i= 69  y=  42.9   ypred3= 39.23213   ypred4= 39.86505 cvres4  3.034953 
+
+Cross-validated SS for models with 3 and 4 explanatory variables
+[1] 1900.983 1794.842
+[1] 5.248855 5.100215
+residualSDs
+[1] 5.040209 4.848409
+
+Cross-validation root mean square error using ls.cvrmse function
+[1] 5.248855 5.100215
+ [1] "std.dev"      "hat"          "std.res"      "stud.res"     "cooks"       
+ [6] "dfits"        "correlation"  "std.err"      "cov.scaled"   "cov.unscaled"
+
+Compare two ways of computing cross-validated residuals
+Second approach is based on the t(X)%*X matrix
+          cvres4    cvres4b
+ [1,] -4.1759498 -4.1759498
+ [2,] -5.8206755 -5.8206755
+ [3,]  0.4435884  0.4435884
+ [4,] -2.3461729 -2.3461729
+ [5,] 11.4194207 11.4194207
+ [6,] -2.0343146 -2.0343146
+ [7,] -7.5799585 -7.5799585
+ [8,] 10.9803576 10.9803576
+ [9,] -0.3331639 -0.3331639
+[10,]  3.3052023  3.3052023
+
+Size of holdout set is  19 
+Cross-validation root mean square error with holdout set
+[1] 5.556060 5.131601
