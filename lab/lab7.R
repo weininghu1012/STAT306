@@ -1,11 +1,11 @@
 ###STAT306 Lab 7 
 ### Cross-validation. 
 
-dat <- read.table("richmondcondo.txt", header=T, skip=2)
+dat <- read.table("/Users/apple/Desktop/STAT306/lab/richmondcondo.txt", header=T, skip=2)
 dat <- dat[,-c(1, 10)]
 
 ###Part 1 Leave-one-out CV
-source("ls.cvrmse.R.txt")
+source("/Users/apple/Desktop/STAT306/lab/ls.cvrmse.R")
 #This file is also provided by Prof. Welch. 
 #It includes a function to calculate the leave-one-out CV RMSE
 
@@ -73,3 +73,29 @@ selModel.err2
 
 ## average prediction error ##
 (selModel.err1  + selModel.err2)/2
+
+
+#The lab7 quiz
+library(MASS)
+dat = cpus[,-c(1,9)]
+names(dat)
+fullModel = lm(perf~.,dat)
+ls.cvrmse(fullModel)
+set.seed(306)
+n = nrow(dat)
+n
+id.sub1 <- sort(sample(1:n, round(n/2), replace = FALSE))
+dat.train <- dat[id.sub1,]  
+dat.holdout <- dat[-id.sub1,]
+#What is the prediction error of the full model trained based on the 
+#training data set on the hold-out data set?
+
+fullModel.train <- lm(perf~., data = dat.train)
+pred.holdout = predict(fullModel.train, dat.holdout)
+
+pred.err = sqrt(sum((dat.holdout$perf - pred.holdout)^2)/length(pred.holdout))
+
+
+
+
+
