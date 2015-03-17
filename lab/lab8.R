@@ -12,20 +12,20 @@
 # and number of physician visits during the first trimester (ftv, variable with three levels, 0, 1, and 2+)
 
 #Read in the data
-wt <- read.table("bwt.txt", header=T)
+wt <- read.table("/Users/apple/Desktop/STAT306/lab/bwt.txt", header=T)
 wt$race <- as.factor(wt$race)
 wt$ftv <- as.factor(wt$ftv)
 
 #Some exploratory plots
-#Response against two continuous variables 
+#Response against two continuous variables(age and weight of mother) 
 #(whether the value of these variables differs at the low=0 group and low=1 group)
 par(mfrow=c(1,2))
-plot(factor(wt$low),wt$age,main="age")
+plot(factor(wt$low),wt$age,main="age") # main is the title of the plot
 plot(factor(wt$low),wt$lwt,main="Weight of Mother")
 
 #Response against other categorical variables
 print(table(wt$low,wt$race)) 
-	#In this table, row is for the first variable and column is for the second variable.
+	#In this table, row is for the first variable and column is for the second variable(smoke or not).
 print(table(wt$low,wt$smoke)) 
 print(table(wt$low,wt$ptd)) #History of Premature Labor
 print(table(wt$low,wt$ht)) #History of Hypertension	
@@ -84,7 +84,7 @@ predict(fit2, data.frame(age=20, lwt=170, race="black",
 ##Two-fold cross-validation for out-of-sample misclassification rate.
 ##Similarly as in the previous lab, we can split the data into two sets and
 ##test the predictive performance of the logistic models.
-set.seed(1)
+set.seed(1) # to make sure the sample you randomly generated is the same over time
 ind <- sample(1:189, 90)
 wt.sub1 <- wt[-ind, ]
 wt.sub2 <- wt[ind, ]
@@ -104,3 +104,36 @@ pt2
 (pt1[1,2] + pt1[2, 1] + pt2[1,2] + pt2[2, 1])/189
 #0.3227513
 #Modify the above code to calculate the misclassification rate of the full model. 
+
+# Lab8 quiz
+library(MASS)
+data(menarche)
+fit = glm(cbind(Menarche,Total-Menarche)~Age, family = binomial, data = menarche)
+summary(fit)
+# Call:
+#   glm(formula = cbind(Menarche, Total - Menarche) ~ Age, family = binomial, 
+#       data = menarche)
+# 
+# Deviance Residuals: 
+#   Min       1Q   Median       3Q      Max  
+# -2.0363  -0.9953  -0.4900   0.7780   1.3675  
+# 
+# Coefficients:
+#   Estimate Std. Error z value Pr(>|z|)    
+# (Intercept) -21.22639    0.77068  -27.54   <2e-16 ***
+# Age           1.63197    0.05895   27.68   <2e-16 ***
+#   ---
+#   Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+# 
+# (Dispersion parameter for binomial family taken to be 1)
+# 
+# Null deviance: 3693.884  on 24  degrees of freedom
+# Residual deviance:   26.703  on 23  degrees of freedom
+# AIC: 114.76
+# 
+# Number of Fisher Scoring iterations: 4
+
+#Q1: 1.63197
+#Q2: 0.05895
+predict(fit,data.frame(Age = 14),type = "response")
+#Q3: 0.8349553
