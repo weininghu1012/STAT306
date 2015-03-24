@@ -5,7 +5,6 @@ names(muta)
 #Case y   AMW   MW     Sv    Se    Sp    Ss     Mv   Me   Mp   Ms   nAT  nSK 
 # nBT nBO nBM nDB nTB nAB nC  nN  nO  nP  nS  nF  nCL nBR nX  nCO  nNO nNO2 
 # nSO2 nSO3 nPO nCS nHA nCIC nCIR nR03 nR04 nR05 nR06 nR07  nR08 nR09 nR10
-
 options(digits=3)
 print(cor(muta$y,muta[,3:47]))
 #        AMW     MW    Sv    Se     Sp     Ss      Mv     Me      Mp     Ms
@@ -18,7 +17,6 @@ print(cor(muta$y,muta[,3:47]))
 #[1,] -0.0918 0.0358 -0.0388 -0.0429 0.147 0.255 0.263 0.159 0.0111 0.0799 0.215
 #       nR07   nR08   nR09  nR10
 #[1,] 0.0113 0.0330 0.0829 0.273
-
 # largest correlations with muta$y are the following.
 # nBM 0.221
 # nDB 0.212
@@ -26,7 +24,6 @@ print(cor(muta$y,muta[,3:47]))
 # nCIC 0.255
 # nCIR 0.263
 # nR10 0.273
-
 par(mfrow=c(3,3))
 attach(muta)
 plot(factor(y),nR10,ylab="nR10") # lots of 0s when y=0
@@ -56,5 +53,4 @@ title("random 100 records")
 plot(jDB[ii],jCIC[ii],type="n")
 text(jDB[ii],jCIC[ii],label=ysym[ii])
 title("jittered")
-
 # cannot discriminate on low dimensions

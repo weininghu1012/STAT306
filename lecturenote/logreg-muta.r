@@ -8,6 +8,8 @@ hist(tem,main="histogram of correlations of mutagenicity vars",xlab="corr")
 par(mfrow=c(2,1))
 fit1=glm(y~.,family="binomial",data=muta)
 print(summary(fit1))
+
+
 # six NAs for betas, multicollinearity problem as in Chapter 5
 # ...
 #Ms           -0.75257    0.33770   -2.23   0.0258 *  
@@ -52,6 +54,7 @@ print(summary(fit2))
 #Residual deviance: 1999.6  on 1846  degrees of freedom
 #AIC: 2026
 
+
 pred1=predict(fit1,type="response")
 pred2=predict(fit2,type="response")
 plot(factor(muta$y),pred1,xlab="y (not/is mutagenic)",
@@ -60,7 +63,6 @@ title("All 45 explanatory variables")
 plot(factor(muta$y),pred2,xlab="y (not/is mutagenic)",
   ylab="model 2: probability of mutagenicity")  
 title("12 'best' explanatory variables")
-
 # predict a compound to be mutagenic if prediction probability >=0.5 (yhat=1)
 tab1=table(muta$y, pred1>=0.5) # in-sample classification, see Table 7.3, p 7-14
 print(tab1); print(tab1/1859)
@@ -80,7 +82,6 @@ print(tab3); print(tab3/1859)
 #    FALSE TRUE          FALSE   TRUE
 #  0   740  224       0 0.3981 0.1205  # error rate .1205/.5186=.232
 #  1   295  600       1 0.1587 0.3228  # error rate .1587/.4814=.330
-
 # Hosmer-Lemeshow calibration checks
 hist(pred1); hist(pred2)
 pr1cat=cut(pred1,breaks=seq(0,1,.1))
@@ -96,7 +97,6 @@ HLsumm2=tapply(muta$y,pr2cat,mean);  print(HLsumm2)
 #(0.8,0.9]   (0.9,1] 
 #    0.912     0.931 
 # full model is better calibrated
-
 # out-of-sample misclassification (with holdout set) is more meaningful than
 # in-sample misclassification
 # compare with random split into training and holdout
