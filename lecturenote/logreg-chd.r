@@ -5,7 +5,7 @@
 # source is Hosmer and Lemeshow, Applied Logistic Regression, 2nd ed.
 # 100 subjects in a scientific study, 
 # relevant population might be those with some heart disease.
-chd=read.table("chdage.dat.txt",head=T) #nrow=100
+chd=read.table("/Users/apple/Desktop/STAT306/lecturenote/chdage.dat.txt",head=T) #nrow=100
 names(chd) # id age ichd; ichd=1 if significant coronary heart disease
 chd=chd[,-1]  # omit index=id
 print(summary(chd))
@@ -47,6 +47,7 @@ mnprop=tapply(ichd,agecateg,mean); print(mnprop)
 #  0.7647059   0.8000000 
 
 agemid=c(25,32.5,37.5,42.5,47.5,52.5,57.5,65)
+par(mar=c(0.1,0.1,0.1,0.1))
 plot(agemid,mnprop)  # curve is sigmoid shape
 
 # binary or logistic regression 
