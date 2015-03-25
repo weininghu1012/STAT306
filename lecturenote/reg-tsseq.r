@@ -9,8 +9,17 @@ library(lmtest)
 #     p = implicit deflator of Gross National Product,
 #     G = real purchases of goods and services,  
 #     x = real exports.
-myunemp=read.table("unemployment.txt",header=T)
+myunemp=read.table("/Users/apple/Desktop/STAT306/lecturenote/unemployment.txt",header=T)
+#data collected sequentially in time
+# year     UN    m     p      G   x
+# 1 1895 13.703 4.43 0.153 17.449 6.0
+# 2 1896 14.445 4.35 0.150 17.656 7.1
+# 3 1897 14.543 4.64 0.150 18.097 7.6
+# 4 1898 12.354 5.26 0.154 19.412 8.4
+# 5 1899  6.536 6.09 0.159 19.423 8.5
+# 6 1900  5.004 6.60 0.165 19.412 9.3
 attach(myunemp)
+# nrow(myunemp) = 62, there are 62 years in our data
 time = 1:62
 logmprat=log(m/p)
 logG=log(G)
@@ -40,6 +49,7 @@ print(summary(fit))
 
 dwtest(UN ~ logmprat + logG + logx + time)
 #data:  UN ~ logmprat + logG + logx + time
+# DW = 0 for strong positive serial correlation, DW = 4 for for strong negative serial correlation
 #DW = 0.7088, p-value = 1.399e-10
 #alternative hypothesis: true autocorrelation is greater than 0
 res=fit$resid
@@ -52,6 +62,8 @@ print(dwstat) # 0.7088309
 # dwstat near 4 for strong negative serial correlation 
 
 par(mfrow=c(3,2))
+par("mar")
+par(mar = c(0.01,0.01,0.01,0.01))
 plot(fit$resid) # -+-
 abline(h=0)
 plot(fit$resid[-62],fit$resid[-1],xlab="resid(t)",ylab="resid(t+1)"); abline(h=0); abline(v=0)
@@ -60,3 +72,4 @@ plot(logmprat,UN,type="n"); text(logmprat,UN,label=1:62)
 plot(logG,UN,type="n"); text(logG,UN,label=1:62)
 plot(logx,UN,type="n"); text(logx,UN,label=1:62)
 plot.ts(UN,xlab="time is years 1895:1956")
+
