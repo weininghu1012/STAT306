@@ -1,0 +1,87 @@
+The std deviations of the principal components
+Importance of components:
+                       Comp.1 Comp.2 Comp.3  Comp.4  Comp.5  Comp.6 Comp.7
+Standard deviation     45.566 27.105 23.207 17.3596 15.9345 12.6812 9.9239
+Proportion of Variance  0.408  0.144  0.106  0.0592  0.0499  0.0316 0.0193
+Cumulative Proportion   0.408  0.552  0.658  0.7169  0.7667  0.7983 0.8177
+                       Comp.8 Comp.9 Comp.10 Comp.11 Comp.12 Comp.13 Comp.14
+Standard deviation     9.1564 8.6593  8.5307  8.1056  7.5667  7.2903 6.96389
+Proportion of Variance 0.0165 0.0147  0.0143  0.0129  0.0112  0.0104 0.00952
+Cumulative Proportion  0.8341 0.8488  0.8631  0.8760  0.8873  0.8977 0.90724
+                       Comp.15 Comp.16 Comp.17 Comp.18 Comp.19 Comp.20 Comp.21
+Standard deviation     6.81608 5.88883 5.76505 5.40664  5.2426 5.02575 4.80030
+Proportion of Variance 0.00912 0.00681 0.00653 0.00574  0.0054 0.00496 0.00452
+Cumulative Proportion  0.91636 0.92317 0.92970 0.93544  0.9408 0.94579 0.95032
+                       Comp.22 Comp.23 Comp.24 Comp.25 Comp.26 Comp.27 Comp.28
+Standard deviation     4.68856 4.44871 4.29154  4.2246  4.0393 3.96497 3.80102
+Proportion of Variance 0.00432 0.00389 0.00362  0.0035  0.0032 0.00309 0.00284
+Cumulative Proportion  0.95464 0.95852 0.96214  0.9656  0.9688 0.97193 0.97477
+                       Comp.29 Comp.30 Comp.31 Comp.32 Comp.33 Comp.34 Comp.35
+Standard deviation     3.59163 3.48981 3.24212   3.195  3.1081 2.92706 2.83362
+Proportion of Variance 0.00253 0.00239 0.00206   0.002  0.0019 0.00168 0.00158
+Cumulative Proportion  0.97730 0.97970 0.98176   0.984  0.9857 0.98734 0.98892
+                       Comp.36 Comp.37 Comp.38 Comp.39  Comp.40  Comp.41
+Standard deviation     2.81275 2.51689 2.38227 2.31815 2.246141 2.123198
+Proportion of Variance 0.00155 0.00124 0.00111 0.00106 0.000991 0.000885
+Cumulative Proportion  0.99047 0.99172 0.99283 0.99389 0.994878 0.995764
+                        Comp.42  Comp.43  Comp.44  Comp.45 Comp.46  Comp.47
+Standard deviation     1.925808 1.908524 1.757085 1.693289 1.64335 1.434192
+Proportion of Variance 0.000728 0.000715 0.000606 0.000563 0.00053 0.000404
+Cumulative Proportion  0.996492 0.997207 0.997813 0.998376 0.99891 0.999311
+                        Comp.48  Comp.49  Comp.50
+Standard deviation     1.261755 1.038506 0.916623
+Proportion of Variance 0.000313 0.000212 0.000165
+Cumulative Proportion  0.999623 0.999835 1.000000
+
+The loadings for the first two principal components
+            Comp.1   Comp.2
+the       0.926429 -0.32331
+and      -0.018541 -0.04996
+to        0.166984  0.48439
+a/an     -0.215826 -0.39216
+of        0.100045 -0.06761
+in        0.031903  0.06134
+that/ose  0.093339  0.34491
+it        0.101738  0.15081
+not       0.028671  0.10778
+as       -0.058569 -0.05733
+with     -0.058348 -0.13102
+but       0.036888  0.11816
+for      -0.005859 -0.00443
+at       -0.020356 -0.08761
+this/ese -0.030591  0.05455
+so        0.033969  0.18272
+all       0.041453  0.10872
+on       -0.070511 -0.27845
+from      0.001012 -0.08731
+one/s     0.030655  0.08124
+up       -0.046488 -0.16732
+no        0.008501  0.08314
+out      -0.052754 -0.09877
+what     -0.034356  0.01316
+then      0.025653  0.08069
+if        0.009647  0.09316
+there     0.009869  0.06991
+by        0.014017  0.00204
+who       0.015854  0.07000
+when      0.016172  0.08408
+into     -0.000957 -0.07977
+now       0.002303  0.00898
+down     -0.027356 -0.11578
+over     -0.012675 -0.09573
+back     -0.022199 -0.07392
+or       -0.048156 -0.02508
+well      0.004598  0.00953
+which     0.053313  0.12971
+how       0.001824 -0.00319
+here     -0.009783  0.01488
+just     -0.013463 -0.02891
+very      0.015302  0.12611
+where     0.020113  0.03230
+before    0.008252 -0.00281
+upon      0.035629  0.08909
+about    -0.025121 -0.00215
+after     0.011348 -0.03291
+more     -0.004055  0.02757
+why      -0.016244  0.00716
+some     -0.001679  0.06392
