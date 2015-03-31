@@ -1,6 +1,6 @@
 
 # blood alcohol content, with #beers drank and gender as explanatory variables
-alc<-read.table("bloodalc.txt",header=T)
+alc<-read.table("/Users/apple/Desktop/STAT306/lecturenote/bloodalc.txt",header=T)
 alc$beers.centered=alc$Beers-mean(alc$Beers)  # centered version of Beers
 # mean(alc$Beers) = 4.8125
 attach(alc)
