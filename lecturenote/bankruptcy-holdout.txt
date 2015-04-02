@@ -1,0 +1,13 @@
+cftd=(cash flow)/(total debt)
+nita=(net income)/(total assets)
+cacl=(current assets)/(current liabilities)
+cans=(current assets)/(net sales)
+ibr=1 for bankrupt, =0 for not
+cftd     nita     cacl    cans   ibr
+ 0.0643   0.0156  1.0077  0.3978  1
+-0.0721  -0.0930  1.4544  0.2589  1
+-0.2777  -0.2316  1.1918  0.6601  1
+ 0.1486   0.0564  2.2347  0.5563  0
+ 0.2029   0.0792  1.9936  0.3018  0
+ 0.1661   0.0351  2.4527  0.1370  0
+ 0.5808   0.0371  5.0594  0.1268  0
