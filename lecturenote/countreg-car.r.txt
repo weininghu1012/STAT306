@@ -1,0 +1,194 @@
+# Poisson count regression for number of claims
+# source: DeJong and Heller 2008, Generalized Linear Models for Insurance Data
+ 
+car=read.csv("carsub.csv",header=T) # subset of the original data set
+print(dim(car)) # 4821   10 
+print(names(car))
+# [1] "veh_value" "exposure"  "clm"       "numclaims" "claimcst0" "veh_body" 
+# [7] "veh_age"   "gender"    "area"      "agecat"   
+options(digits=5)
+attach(car)
+print(table(numclaims))
+#4509  288   23    1 
+cat(mean(numclaims),var(numclaims),"\n")
+# 0.069903 0.075818
+print(cor(numclaims,exposure)) #  0.12928
+print(table(numclaims,veh_body))
+#         veh_body
+#numclaims HBACK HDTOP SEDAN STNWG TRUCK  UTE
+#        0  1273   106  1572  1129   120  309
+#        1    85     7    92    83    12    9
+#        2     5     1    11     5     0    1
+#        3     0     0     1     0     0    0
+
+print(table(numclaims,veh_age))
+#         veh_age
+#numclaims    1    2    3    4
+#        0  828 1078 1392 1211
+#        1   41   79   94   74
+#        2    3    6   11    3
+#        3    0    0    0    1
+
+print(table(numclaims,gender))
+#         gender
+#numclaims    F    M
+#        0 2624 1885
+#        1  161  127
+#        2   13   10
+#        3    0    1
+
+print(table(numclaims,area))
+#         area
+#numclaims    A    B    C    D    E    F
+#        0 1101  828 1337  593  417  233
+#        1   73   54   85   33   27   16
+#        2    8    2    9    2    1    1
+#        3    1    0    0    0    0    0
+
+print(table(numclaims,agecat)) # rate of claims decreasing with agecat?
+#         agecat
+#numclaims    1    2    3    4    5    6
+#        0  387  830 1039 1056  721  476
+#        1   33   59   76   70   30   20
+#        2    1    8    5    6    1    2
+#        3    0    0    1    0    0    0
+print(tapply(numclaims>=1,agecat,mean)) 
+#       1       2       3       4       5       6 
+# 0.08076 0.07469 0.07315 0.06714 0.04122 0.04418
+
+fit1=glm(numclaims~veh_body+factor(veh_age)+gender+area+factor(agecat),
+    family="poisson")
+print(summary(fit1))
+#Coefficients:
+#                 Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)       -2.6599     0.2400  -11.08   <2e-16 ***
+#veh_bodyHDTOP      0.0686     0.3549    0.19   0.8468    
+#veh_bodySEDAN      0.0119     0.1398    0.08   0.9323    
+#veh_bodySTNWG      0.0665     0.1532    0.43   0.6644    
+#veh_bodyTRUCK      0.1876     0.3188    0.59   0.5563    
+#veh_bodyUTE       -0.7940     0.3280   -2.42   0.0155 *  
+#factor(veh_age)2   0.3727     0.1802    2.07   0.0386 *  
+#factor(veh_age)3   0.3687     0.1740    2.12   0.0341 *  
+#factor(veh_age)4   0.1977     0.1842    1.07   0.2833    
+#genderM            0.1574     0.1143    1.38   0.1686    
+#areaB             -0.1798     0.1680   -1.07   0.2844    
+#areaC             -0.0794     0.1436   -0.55   0.5801    
+#areaD             -0.2537     0.1973   -1.29   0.1986    
+#areaE             -0.1562     0.2165   -0.72   0.4706    
+#areaF             -0.1471     0.2656   -0.55   0.5796    
+#factor(agecat)2   -0.0291     0.2062   -0.14   0.8879    
+#factor(agecat)3   -0.0927     0.2011   -0.46   0.6448  
+#factor(agecat)4   -0.1940     0.2031   -0.96   0.3393    
+#factor(agecat)5   -0.7265     0.2459   -2.95   0.0031 ** 
+#factor(agecat)6   -0.6199     0.2668   -2.32   0.0202 *  
+#    Null deviance: 1863.6  on 4820  degrees of freedom
+#Residual deviance: 1825.6  on 4801  degrees of freedom
+#AIC: 2505
+
+fit2=glm(numclaims~veh_body+factor(veh_age)+gender+factor(agecat),
+    family="poisson")
+print(summary(fit2))
+#Coefficients:
+#                 Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)      -2.75460    0.22457  -12.27   <2e-16 ***
+#veh_bodyHDTOP     0.03453    0.35260    0.10   0.9220    
+#veh_bodySEDAN     0.00699    0.13971    0.05   0.9601    
+#veh_bodySTNWG     0.03991    0.14948    0.27   0.7895    
+#veh_bodyTRUCK     0.13634    0.31342    0.44   0.6636    
+#veh_bodyUTE      -0.83223    0.32464   -2.56   0.0104 *  
+#factor(veh_age)2  0.37113    0.18015    2.06   0.0394 *  
+#factor(veh_age)3  0.36139    0.17396    2.08   0.0378 *  
+#factor(veh_age)4  0.19202    0.18418    1.04   0.2971    
+#genderM           0.17082    0.11398    1.50   0.1339    
+#factor(agecat)2  -0.03076    0.20602   -0.15   0.8813    
+#factor(agecat)3  -0.09605    0.20102   -0.48   0.6328    
+#factor(agecat)4  -0.19335    0.20303   -0.95   0.3409    
+#factor(agecat)5  -0.72727    0.24587   -2.96   0.0031 ** 
+#factor(agecat)6  -0.62756    0.26669   -2.35   0.0186 *  
+#    Null deviance: 1863.6  on 4820  degrees of freedom
+#Residual deviance: 1827.9  on 4806  degrees of freedom
+#AIC: 2497
+
+#Could create new categorical variable for age groups
+n=nrow(car)
+agecat2=rep(0,n)
+agecat2[agecat==5 | agecat==6]=1
+# agecat2 is binary: merged categories 1 to 4, and 5 to 6.
+
+# UTE is utility vehicle
+fit3=glm(numclaims~I(veh_body=="UTE")+factor(veh_age)+gender+agecat2,
+    family="poisson")
+print(summary(fit3))
+#Coefficients:
+#                         Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)                -2.838      0.155  -18.30  < 2e-16 ***
+#I(veh_body == "UTE")TRUE   -0.835      0.309   -2.70    0.007 ** 
+#factor(veh_age)2            0.373      0.180    2.08    0.038 *  
+#factor(veh_age)3            0.361      0.173    2.09    0.037 *  
+#factor(veh_age)4            0.196      0.183    1.07    0.283    
+#genderM                     0.179      0.111    1.62    0.106    
+#agecat2                    -0.593      0.147   -4.04  5.3e-05 ***
+#    Null deviance: 1863.6  on 4820  degrees of freedom
+#Residual deviance: 1829.7  on 4814  degrees of freedom
+#AIC: 2483 (smaller than fit1 and fit2)
+
+# What are the interpretations of the coefficients?
+
+# compare logistic regression
+fit4=glm(clm~I(veh_body=="UTE")+factor(veh_age)+gender+agecat2,
+    family="binomial")
+print(summary(fit4))
+#Coefficients:
+#                         Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)                -2.845      0.165  -17.25   <2e-16 ***
+#I(veh_body == "UTE")TRUE   -0.896      0.330   -2.71   0.0066 ** 
+#factor(veh_age)2            0.396      0.192    2.06   0.0390 *  
+#factor(veh_age)3            0.350      0.185    1.89   0.0590 .  
+#factor(veh_age)4            0.213      0.195    1.10   0.2725    
+#genderM                     0.179      0.119    1.50   0.1335    
+#agecat2                    -0.602      0.155   -3.88   0.0001 ***
+#    Null deviance: 2311.7  on 4820  degrees of freedom
+#Residual deviance: 2280.4  on 4814  degrees of freedom
+#AIC: 2294 (Can this be compared with the Poisson regression model?)
+
+pred4=predict(fit4,type="response")
+print(summary(pred4))  # predicted probabilities are small, claim is rare event
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0128  0.0452  0.0672  0.0647  0.0793  0.0937
+
+# classification is not easy
+print(table(clm,(pred4>=.07)))
+#clm FALSE TRUE
+#  0  2482 2027
+#  1   127  185
+print(table(clm,(pred4>=.08)))
+#clm FALSE TRUE
+#  0  3898  611
+#  1   244   68
+
+pred3lin=predict(fit3)
+print(summary(pred3lin)) # distribution of betahat^T*xvec
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#  -4.27   -3.06   -2.64   -2.72   -2.46   -2.29 
+
+# predicted mean number of claims
+pred3=predict(fit3,type="response") # same as exp(pred3lin)
+print(summary(pred3))
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.0141  0.0471  0.0713  0.0699  0.0850  0.1020 
+
+#Poisson probability of 0 is exp(-mu(xvec)), mu(xvec)=exp(sum(betahat*xvec))
+poissonprob0=exp(-exp(pred3lin))
+print(summary(poissonprob0))
+#   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#  0.903   0.918   0.931   0.933   0.954   0.986
+logisticprob0=1-pred4
+
+# compare P(Y=0) for the 2 models
+plot(poissonprob0,logisticprob0) # strongly correlated
+print(cor(poissonprob0,logisticprob0)) # 0.99845
+
+# Models are similar in predictive power but Poisson model can get
+# P(clm=1|xvec), P(clm=2|xvec) instead of just P(clm>=1|vec)
+
+# Exercise: verify null and residual deviance, and SEs for Poisson regression
